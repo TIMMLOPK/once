@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/ph-p.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <title>Photo</title>
+</head>
+
+<body>
+
+    <header class="header">
+
+        <a href="#" class="logo">Once.</a>
+
+        <nav class="navbar">
+            <a href="/">主頁</a>
+        </nav>
+
+        <div id="menu-btn" class="fas fa-bars"></div>
+    </header>
+
+    <section>
+        <div class="shell">
+            <ui class="images">
+                <li class="img"></li>
+                <li class="img"></li>
+                <li class="img"></li>
+            </ui>
+            <ui class="min-images">
+                <li class="min"></li>
+                <li class="min"></li>
+                <li class="min"></li>
+            </ui>
+            <div class="button">
+                <div class="button-left"><i class="fas fa-angle-left"></i></div>
+                <div class="button-right"><i class="fas fa-angle-right"></i></div>
+            </div>
+        </div>
+
+        <script>
+
+            let left = document.querySelector(".button-left")
+            let right = document.querySelector(".button-right")
+            let min = document.querySelectorAll(".min")
+            let images = document.querySelector(".images")
+            // 我们先设置一个index用来计算和控制图片的位置，再设置一个time作为定时器
+            let index = 0
+            let time
+            // 在这里我们先创建一个position为复用函数，作用就是结合index来定义当前图片的位置的
+            function position() {
+                images.style.left = (index * -100) + "%"
+            }
+
+            function add() {
+                if (index >= min.length - 1) {
+                    index = 0
+                } else {
+                    index++
+                }
+            }
+
+            function desc() {
+                if (index < 1) {
+                    index = min.length - 1
+                } else {
+                    index--
+                }
+            }
+
+            function timer() {
+                time = setInterval(() => {
+                    index++
+                    desc()
+                    add()
+                    position()
+                }, 3000)
+            }
+
+            left.addEventListener("click", () => {
+                desc()
+                position()
+                clearInterval(time)
+                timer()
+            })
+
+            right.addEventListener("click", () => {
+                add()
+                position()
+                clearInterval(time)
+                timer()
+            })
+            for (let i = 0; i < min.length; i++) {
+                min[i].addEventListener("click", () => {
+                    index = i
+                    position()
+                    clearInterval(time)
+                    timer()
+                })
+            }
+
+            timer()
+        </script>
+
+    </section>
+
+    <section>
+
+        <div ID="ngy2p" data-nanogallery2='{
+        "thumbnailWidth": "200",
+        "colorScheme": {
+          "thumbnail": {
+            "background": "rgba(246,246,246,1)"
+          }
+        },
+        "thumbnailDisplayTransition": "scaleUp",
+        "thumbnailLabel": {
+          "position": "overImageOnBottom",
+          "display": false
+        },
+        "thumbnailHoverEffect2": "imageBlurOn|labelSlideUp|imageScale150",
+        "galleryDisplayMode": "moreButton",
+        "galleryDisplayMoreStep": 5,
+        "galleryLastRowFull": true,
+        "thumbnailAlignment": "center",
+        "thumbnailOpenImage": true
+      }'>
+
+            <a href="../images/ph-1.jpg" data-ngthumb="../images/ph-1.jpg" data-ngdesc=""></a>
+            <a href="../images/ph-2.jpg" data-ngthumb=../images/ph-2.jpg" data-ngdesc=""></a>
+            <a href="../images/ph-3.jpg" data-ngthumb="../images/ph-3.jpg" data-ngdesc=""></a>
+
+        </div>
+
+    </section>
+    <section class="footer">
+
+        <div class="box-container">
+            <div class="box">
+                <h3>Quick links</h3>
+                <a href="#home"> <i class="fas fa-arrow-right"></i> 主頁 </a>
+                <a href="page/document.html"> <i class="fas fa-arrow-right"></i> 文章 </a>
+                <a href="page/photo.html"> <i class="fas fa-arrow-right"></i> 圖集 </a>
+                <a href="#"><i class="fas fa-arrow-right"></i> 關於我</a>
+            </div>
+
+            <div class="box">
+                <h3>Useful Link</h3>
+                <a href="https://github.com/"> <i class="fas fa-check"></i> Github </a>
+                <a href="https://fontawesome.com/"> <i class="fas fa-check"></i> fontawesome </a>
+                <a href="https://www.w3schools.com/"> <i class="fas fa-check"></i> W3school </a>
+            </div>
+
+            <div class="box">
+                <h3>Follow us</h3>
+                <a href="#"> <i class="fab fa-facebook-f"></i> facebook </a>
+                <a href="#"> <i class="fab fa-instagram"></i> instagram </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i>bilibili coming soon </a>
+            </div>
+
+        </div>
+
+        <div class="credit">Created by <span>Once</span>Github</div>
+
+
+
+    </section>
+    <script src="../js/script.js"></script>
+</body>
+
+</html>
